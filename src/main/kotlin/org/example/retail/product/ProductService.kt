@@ -7,7 +7,7 @@ import org.example.retail.entity.ProductEntity
 import org.example.retail.model.ProductCreationRequest
 import org.example.retail.entity.ProductRepository
 import org.example.retail.entity.VendorRepository
-import org.example.retail.extensions.ProductExtensions.Companion.toDto
+import org.example.retail.extensions.toDto
 import org.example.retail.model.Product
 import org.springframework.stereotype.Service
 
