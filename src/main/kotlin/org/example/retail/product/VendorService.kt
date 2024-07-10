@@ -5,10 +5,10 @@ import kotlinx.coroutines.flow.map
 import org.example.retail.entity.VendorEntity
 import org.example.retail.entity.VendorRepository
 import org.example.retail.exceptions.NotFoundException
+import org.example.retail.extensions.toDto
 import org.example.retail.model.Vendor
 import org.example.retail.model.VendorCreationRequest
 import org.springframework.stereotype.Service
-import org.example.retail.extensions.VendorExtensions.Companion.toDto
 
 @Service
 class VendorService(
