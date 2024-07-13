@@ -4,11 +4,12 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 import org.example.retail.exceptions.NotFoundException
 import org.example.retail.entity.ProductEntity
-import org.example.retail.model.ProductCreationRequest
 import org.example.retail.entity.ProductRepository
 import org.example.retail.entity.VendorRepository
 import org.example.retail.extensions.toDto
+import org.example.retail.extensions.toNewEntity
 import org.example.retail.model.Product
+import org.example.retail.model.ProductMutation
 import org.springframework.stereotype.Service
 
 @Service
@@ -18,15 +19,13 @@ class ProductService(
     val productRepository: ProductRepository,
 ) {
 
-    suspend fun createProduct(request: ProductCreationRequest): Product {
-
-        val newEntity = ProductEntity(
-            name = request.name,
-            vendorId = request.vendorId,
-            price = request.price
-        )
-        val savedProduct = productRepository.save(newEntity)
+    suspend fun createProduct(request: ProductMutation): Product {
+        val savedProduct = productRepository.save(request.toNewEntity())
         return savedProduct.toDto()
+
+        /*Note to ask about --> if this code throws an exception is it going to be stored in the val then returned to the user ?
+        return productRepository.save(request.toNewEntity()).toDto()
+         */
     }
 
     suspend fun getProductById(id: String): Product {
@@ -49,9 +48,9 @@ class ProductService(
         return productEntities.map { it.toDto() }
     }
 
-    suspend fun updateProduct(id:String, request: ProductCreationRequest):Product{
+    suspend fun updateProduct(id: String, request: ProductMutation): Product {
         val existingProduct = productRepository.findById(id) ?: throw NotFoundException("Product $id not found!")
-        val updatedProduct=existingProduct.copy(
+        val updatedProduct = existingProduct.copy(
             name = request.name,
             vendorId = request.vendorId,
             price = request.price
