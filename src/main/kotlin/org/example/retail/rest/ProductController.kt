@@ -3,7 +3,7 @@ package org.example.retail.rest
 import kotlinx.coroutines.flow.Flow
 import org.example.retail.entity.ProductEntity
 import org.example.retail.model.Product
-import org.example.retail.model.ProductCreationRequest
+import org.example.retail.model.ProductMutation
 import org.example.retail.product.ProductService
 import org.example.retail.rest.ProductController.Companion.BASE_URL
 import org.springframework.web.bind.annotation.GetMapping
@@ -26,7 +26,7 @@ class ProductController(
 
     @PostMapping
     suspend fun createProduct(
-        @RequestBody request: ProductCreationRequest
+        @RequestBody request: ProductMutation
     ): Product {
         return productService.createProduct(request)
     }
@@ -36,9 +36,11 @@ class ProductController(
 
 
     @GetMapping
-    suspend fun findProductsByVendorId(@RequestParam("vendorId") vendorId: String): List<Product> = productService.findProductsByVendorId(vendorId)
+    suspend fun findProductsByVendorId(@RequestParam("vendorId") vendorId: String): List<Product> =
+        productService.findProductsByVendorId(vendorId)
 
     @PutMapping("/{id}")
-    suspend fun updateProduct(@PathVariable("id") id: String, @RequestBody newProduct: ProductCreationRequest):Product = productService.updateProduct(id, newProduct)
+    suspend fun updateProduct(@PathVariable("id") id: String, @RequestBody newProduct: ProductMutation): Product =
+        productService.updateProduct(id, newProduct)
 }
 
