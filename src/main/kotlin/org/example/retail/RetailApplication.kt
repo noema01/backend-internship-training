@@ -1,5 +1,6 @@
 package org.example.retail
 
+import org.example.retail.properties.ApplicationProperties
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.context.properties.EnableConfigurationProperties
 import org.springframework.boot.runApplication

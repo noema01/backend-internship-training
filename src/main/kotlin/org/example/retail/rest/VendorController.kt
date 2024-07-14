@@ -2,7 +2,7 @@ package org.example.retail.rest
 
 import kotlinx.coroutines.flow.Flow
 import org.example.retail.model.Vendor
-import org.example.retail.model.VendorCreationRequest
+import org.example.retail.model.VendorMutation
 import org.example.retail.product.VendorService
 import org.example.retail.rest.VendorController.Companion.BASE_URL
 import org.springframework.web.bind.annotation.*
@@ -17,7 +17,7 @@ class VendorController (private val vendorService: VendorService) {
 
     @PostMapping
     suspend fun createVendor(
-        @RequestBody request: VendorCreationRequest
+        @RequestBody request: VendorMutation
     ): Vendor {
         return vendorService.createVendor(request)
     }
@@ -29,8 +29,8 @@ class VendorController (private val vendorService: VendorService) {
     suspend fun deleteVendorById(@PathVariable("id") id: String) {vendorService.deleteVendorById(id)}
 
     @GetMapping()
-    suspend fun getAllVendors(): Flow<Vendor> = vendorService.getAllVendors()
+    suspend fun getAllVendors(): List<Vendor> = vendorService.getAllVendors()
 
     @PutMapping("/{id}")
-    suspend fun updateVendor(@PathVariable("id") id: String, @RequestBody newVendor: VendorCreationRequest): Vendor = vendorService.updateVendor(id, newVendor)
+    suspend fun updateVendor(@PathVariable("id") id: String, @RequestBody newVendor: VendorMutation): Vendor = vendorService.updateVendor(id, newVendor)
 }

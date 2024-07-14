@@ -1,6 +1,6 @@
 package org.example.retail.config
 
-import org.example.retail.ApplicationProperties
+import org.example.retail.properties.ApplicationProperties
 import org.example.retail.clients.WebClient
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.context.annotation.Bean

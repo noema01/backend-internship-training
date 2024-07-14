@@ -1,7 +1,6 @@
-package org.example.retail
+package org.example.retail.properties
 
 import org.springframework.boot.context.properties.ConfigurationProperties
-import org.springframework.stereotype.Component
 
 @ConfigurationProperties(prefix = "retail")
 class ApplicationProperties(
