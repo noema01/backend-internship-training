@@ -1,6 +1,6 @@
 package org.example.retail.model
 
-data class VendorCreationRequest (
+data class VendorMutation (
     val name: String,
     val website: String,
     val phoneNumber: String,
