@@ -15,14 +15,27 @@
     <packaging>pom</packaging>
     <description>accounting</description>
     <url/>
-     <properties>
+    <properties>
         <java.version>17</java.version>
         <kotlin.version>1.9.24</kotlin.version>
+        <graphql.version>7.1.4</graphql.version>
     </properties>
 
     <modules>
         <module>inventory</module>
         <module>payment</module>
+        <module>graphql</module>
     </modules>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>com.expediagroup</groupId>
+                <artifactId>graphql-kotlin-spring-server</artifactId>
+                <version>${graphql.version}</version>
+            </dependency>
+        </dependencies>
+
+    </dependencyManagement>
 
 </project>
